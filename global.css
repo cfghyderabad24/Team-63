@@ -1,0 +1,256 @@
+*{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header, footer {
+    background-color: #89bd98;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+}
+
+header a, footer a {
+    color: white;
+    text-decoration: none;
+    padding: 0 25px;
+    font-size: 20px;
+}
+
+header a:hover, footer a:hover {
+        color: #ffffff; /* Change text color on hover */
+        background-color: #395942; /* Add a background color on hover */
+        border-radius: 4px; 
+}
+
+.content {
+    padding: 20px;
+    text-align: center;
+}
+
+header img {
+    height: 40px; /* Adjust height as needed */
+    margin-right: 90px; /* Reduce margin between logo and links */
+}
+.home__img{
+    border-radius: 10%;
+    /* max-width: 100%; */
+    width: 400px;
+    height: auto;
+    display: block;
+    transition: 0.5s ease;
+}
+.home__img:hover img{
+    transform: scale(1.2);
+}
+.feedback{
+    background-color: white;
+    border-radius: 5px;
+}
+.feedback a{
+    color: #89bd98;
+}
+.content-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* .content-wrapper img {
+    max-width: 100%;
+    height: auto;
+    margin-right: 20px;
+} */
+
+.content-wrapper p {
+    flex: 1; /* Allow paragraph to grow and shrink */
+    max-width: 600px; /* Adjust max width of paragraph */
+}
+
+#heading1 {
+    font-size: 90px;
+}
+
+.footer__social-link {
+    size: 200px;
+}
+
+.social-icons {
+    font-size: 40px;
+}
+
+.icon-link {
+    margin-right: 10px; /* Adjust spacing between icons */
+    color: white;
+    size: 200px;
+}
+
+.profiles {
+    display: flex;
+    flex-direction: row;
+}
+
+.home__description {
+    background-color: #ffffff;
+    padding: 40px;
+    margin: 20px auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 800px;
+    text-align: left;
+}
+
+.home__description p {
+    font-size: 18px;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* @media (max-width: 768px) {
+    .content-wrapper {
+        flex-direction: column;
+    }
+
+    header img {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+} */
+ /* Resetting default margins and paddings */
+.aboutus{
+    justify-content: center;
+    align-items: center;
+    width: 75%;
+}
+.aboutus {
+    background-color: #ffffff;
+    padding: 40px;
+    margin: 20px auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 800px;
+    text-align: left;
+}
+
+.aboutus p {
+    font-size: 18px;
+    color: #333;
+    line-height: 1.6;
+}
+.queries{
+    margin: 20px;
+    padding: 10px;
+    color: white;
+    background-color: #89bd98;
+    border-radius: 4px;
+}
+.queries a{
+    color: white;
+    text-decoration: none;
+}
+  .mygroup {
+    margin-bottom: 10px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  /* input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="date"],
+  input[type="checkbox"] {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 2px solid #ccc;
+  } */
+  .mygroup input{
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 2px solid #ccc;
+  }
+  button {
+    padding: 10px 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #055456;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  button:hover {
+    background-color: #071010;
+  }
+
+
+#login-container{
+    
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+.signupdiv{
+    /* background: linear-gradient(to bottom, #94ae9b, #268541); */
+    /* background-color: #ffffff; */
+    background-color: white;
+    padding: 40px;
+    margin: 20px auto;
+    border-radius: 10px;
+    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1);
+    width: 50%;
+    max-width: 800px;
+    text-align: left;
+    
+}
+.loginclass{
+    background-color: white;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+
+}
+
+.fact-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center items horizontally */
+    text-align: center; /* Center align text */
+}
+
+.fact {
+    flex: 1 0 200px;
+    margin: 10px;
+}
+
+.main-fact {
+    flex-basis: 100%; /* Full width for the main fact */
+}
+
+.main-heading {
+    font-size: 24px; /* Example: Different font size */
+    font-weight: bold; /* Example: Different font weight */
+    font-family: Arial, sans-serif; /* Example: Different font family */
+    color: #333; /* Example: Different color */
+}
+
+.main-fact p {
+    margin-top: 5px; /* Example: Adjust spacing between heading and paragraph */
+}
