@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Website</title>
+    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+</head>
+<body>
+    <header class="header">
+        <img src="logo.png" alt="Logo" style="height: 50px;"> <!-- Replace "logo.png" with your logo image file -->
+        <a href="/">Home</a>
+        <a id = "product">Products</a>
+        <a id="don">Donate</a>
+        <a id = "cancer">About Us</a>
+        
+        <a id = "contact">Contact Us</a>
+        <a id = "signup">Sign Up</a>
+        <a id = "login">Log In</a>
+        <a id = "vol">Volunteer </a>
+        <i class="fa fa-shopping-cart" style="float: right;"></i>
+    </header>
+
+    <div class="content">
+        <div class="content-wrapper">
+            <img src="pic.jpg" alt="" class="home__img">
+            <p id="heading1">
+                <b>GOOD UNIVERSE</b>
+            </p>
+        </div>
+        <div class="home__description"><p>We envision a future where menstrual hygiene is prioritized, ensuring that women and girls in marginalized communities have access to necessary resources and support. Addressing menstrual hygiene needs not only promotes their health and dignity but also empowers them to participate fully in society. By advocating for and providing adequate menstrual hygiene management, we aim to eliminate barriers that hinder their well-being and potential.</p>
+        </div>
+        <div class="bg" style="width: 100%;">
+            <video src="homepagevideo.mp4" autoplay loop muted></video>
+        </div>
+        <section class="fact-section">
+            <div class="fact main-fact">
+                <h3 class="main-heading">We are proud of our work</h3>
+            </div>
+            <div class="fact">
+                <h3>57,000+ Direct Lives Impacted</h3>
+            </div>
+            <div class="fact">
+                <h3>100,000+ Indirect Lives Impacted</h3>
+            </div>
+            <div class="fact">
+                <h3>970+ Workshops Completed</h3>
+            </div>
+            <div class="fact">
+                <h3>70+ Partners</h3>
+            </div>
+            <div class="fact">
+                <h3>45+ Media Features</h3>
+            </div>
+            <div class="fact">
+                <h3>12+ Awards</h3>
+            </div>
+        </section>
+        
+
+        
+    </div>
+
+    <footer>
+        <div class="social-icons">
+            <a href="https://www.linkedin.com/company/gooduniversengo/?originalSubdomain=in" class="icon-link"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.instagram.com/gooduniversengo/" class="icon-link"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/GoodUniverseNGO/" class="icon-link"><i class="fab fa-facebook-square"></i></a>
+          </div>
+        <p>&copy; 2024 Good Universe. All rights reserved.</p>
+        <button class="feedback"><a id = "feedback">Feedback </a></button>
+        <button class="comm"><a id = "comm">Community Forum </a></button>
+    </footer>
+</body>
+<!-- <script src="script.js"></script> -->
+<script>
+    document.getElementById("cancer").addEventListener('click', function(){
+        window.location.href = "/about.html";
+    });
+    document.getElementById("vol").addEventListener('click', function(){
+        window.location.href = "/vol.html";
+    });
+    document.getElementById("don").addEventListener('click', function(){
+        window.location.href = "/donate.html";
+    });
+    document.getElementById("contact").addEventListener('click', function(){
+        window.location.href = "/contact.html";
+    });
+    document.getElementById("feedback").addEventListener('click', function(){
+        window.location.href = "/feedback.html";
+    });
+    document.getElementById("comm").addEventListener('click', function(){
+        window.location.href = "/community.html";
+    });
+    document.getElementById("signup").addEventListener('click', function(){
+        window.location.href = "/signup.html";
+    });
+    document.getElementById("login").addEventListener('click', function(){
+        window.location.href = "/login.html";
+    });
+    document.getElementById("product").addEventListener('click', function(){
+        window.location.href = "/product.html";
+    });
+</script>
+
+</html>

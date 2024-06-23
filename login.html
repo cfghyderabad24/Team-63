@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="global.css">
+</head>
+<body style="background: #89bd98;">
+    <h1 style="color:#000000; text-align: center;">Login</h1>
+    <div id="login-container" class="loginclass">
+        
+        <form id="login-form" action="http://localhost:3000/loginstudent" method = "POST">
+            <div class="mygroup">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="mygroup">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="mygroup">
+                <button type="submit">Login</button>
+            </div>
+            <div class="mygroup">
+                <button id = "sign-up">Sign-up</button>
+            </div>
+            
+
+
+        </form>
+        <div id="login-message"></div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Add event listener to handle form submission
+            document.getElementById('login-form').addEventListener('submit', async function(event) {
+              event.preventDefault();
+    
+              const username = document.getElementById('username').value;
+              const password = document.getElementById('password').value;
+    
+              try {
+                const response = await fetch('http://localhost:3000/loginstudent', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify({ username, password })
+                });
+    
+                if (response.ok) {
+                  const message = await response.text();
+                  document.getElementById('login-message').textContent = message;
+                  //alert('You are welcome here!');
+                  // Redirect to another page after successful login
+                   window.location.href = '/index.html';  // success.html place lo keep ur next page to navigate
+                } else {
+                  const errorMessage = await response.text();
+                  document.getElementById('login-message').textContent = errorMessage; // here, it is displayed as invalid password or something.
+
+                  // to redirect to register page, we need add a sign-up logic
+                }
+              } catch (error) {
+                console.error('Error during login:', error);
+                document.getElementById('login-message').textContent = 'An error occurred during login';
+              }
+            });
+          });
+
+          document.getElementById('sign-up').addEventListener('click', function(){
+                window.location.href = './signup.html';
+          });
+    </script>
+</body>
+</html>
