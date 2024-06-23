@@ -93,6 +93,7 @@
         if (response.ok) {
           document.getElementById('success-message').style.display = 'block';
           document.getElementById('feedback-form').reset();
+          window.location.href = "index.html";
         } else {
           const errorData = await response.json();
           console.error('Server responded with error:', errorData);
