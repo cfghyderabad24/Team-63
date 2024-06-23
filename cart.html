@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background: #efecff;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+    .cart-container {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: 800px;
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 40px 30px rgb(0 0 0 / 8%);
+      padding: 20px;
+    }
+    .cart-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+    }
+    .cart-item img {
+      max-width: 100px;
+      width: 100%;
+      height: 100px;
+      object-fit: cover;
+      margin-right: 20px;
+      border-radius: 10px;
+    }
+    .cart-item h2 {
+      font-size: 18px;
+      margin: 0;
+    }
+    .cart-item p {
+      font-size: 12px;
+      color: rgb(0 0 0 / 70%);
+      margin: 5px 0;
+    }
+    .cart-item .quantity {
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+    }
+    .cart-item .quantity input {
+      width: 40px;
+      text-align: center;
+      margin: 0 10px;
+    }
+    .cart-item .quantity button {
+      border: 0;
+      background: #5448de;
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .total {
+      font-size: 18px;
+      font-weight: bold;
+      text-align: right;
+      margin-top: 20px;
+    }
+    .checkout-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #5448de;
+      color: #fff;
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Your Cart</h1>
+  <div class="cart-container" id="cart-container">
+    <!-- Cart items will be dynamically injected here -->
+  </div>
+  <div class="total" id="total">Total: 0.00/-</div>
+  <button class="checkout-btn" onclick="checkout()">Checkout</button>
+  
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script>
+    function renderCart() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const cartContainer = document.getElementById('cart-container');
+      cartContainer.innerHTML = '';
+      let total = 0;
+
+      cart.forEach(item => {
+        const itemTotal = item.quantity * item.price;
+        total += itemTotal;
+
+        const cartItem = document.createElement('div');
+        cartItem.className = 'cart-item';
+
+        cartItem.innerHTML = `
+          <img src="${item.image}" alt="${item.title}">
+          <div>
+            <h2>${item.title}</h2>
+            <p>${item.description}</p>
+            <div class="quantity">
+              <button onclick="updateQuantity('${item.title}', -1)">-</button>
+              <input type="text" value="${item.quantity}" readonly>
+              <button onclick="updateQuantity('${item.title}', 1)">+</button>
+            </div>
+            <p>$${item.price.toFixed(2)} x ${item.quantity} = $${itemTotal.toFixed(2)}</p>
+          </div>
+        `;
+
+        cartContainer.appendChild(cartItem);
+      });
+
+      document.getElementById('total').textContent = `Total : $${total.toFixed(2)}`;
+    }
+
+    function updateQuantity(title, change) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const item = cart.find(item => item.title === title);
+
+      if (item) {
+        item.quantity += change;
+        if (item.quantity <= 0) {
+          cart = cart.filter(item => item.title !== title);
+        }
+
+        localStorage.setItem('cart', JSON.stringify(cart));
+        renderCart();
+      }
+    }
+
+    function checkout() {
+      var totalAmount = 0;
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+      cart.forEach(item => {
+        totalAmount += item.quantity * item.price * 100; // Amount in paise
+      });
+
+      var options = {
+        "key": "YOUR_RAZORPAY_KEY", // Replace with your Razorpay key
+        "amount": totalAmount,
+        "currency": "INR",
+        "name": "Your Company Name",
+        "description": "Purchase Description",
+        "handler": function (response) {
+          alert('Payment successful. Payment ID: ' + response.razorpay_payment_id);
+          // Perform any additional actions upon successful payment
+        },
+        "prefill": {
+          "name": "Your Name",
+          "email": "Your Email",
+          "contact": "Your Contact Number"
+        },
+        "theme": {
+          "color": "#5448de"
+        }
+      };
+
+      var rzp1 = new Razorpay(options);
+      rzp1.open();
+    }
+
+    window.onload = renderCart;
+  </script>
+</body>
+</html>
