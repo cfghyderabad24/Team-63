@@ -1,0 +1,73 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f3f3f3;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  .main {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    position: relative; /* Make .main container relative for absolute positioning */
+    width: 100%;
+    max-width: 600px; /* Adjust max-width for responsiveness */
+  }
+
+  .main h2 {
+    color: #111111;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .logo {
+    position: absolute;
+    top: 20px; /* Adjust top position */
+    right: 20px; /* Adjust right position */
+  }
+
+  .logo img {
+    max-width: 100px; /* Adjust logo size */
+    height: auto;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 10px;
+    color: #555;
+    font-weight: bold;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  textarea,
+  select {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+
+  input[type="checkbox"] {
+    margin-right: 10px;
+  }
+
+  button[type="submit"] {
+    padding: 15px;
+    border-radius: 10px;
+    border: none;
+    background-color: #0b0b0b;
+    color: white;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+  }
