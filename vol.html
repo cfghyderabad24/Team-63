@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Volunteer Form</title>
+  <link rel="stylesheet" href="vol.css">
+</head>
+<body>
+    
+  <div class="main">
+    <h2>Volunteer Form</h2>
+    <form id="volunteerForm">
+      <!-- Personal Information -->
+      <label for="full-name">Full Name:</label>
+      <input type="text" id="full-name" name="full-name" required>
+
+      <label for="email">Email Address:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="phone">Phone Number:</label>
+      <input type="tel" id="phone" name="phone" required>
+
+      <label for="address">Address:</label>
+      <textarea id="address" name="address" rows="2" placeholder="Enter your address"></textarea>
+
+      <!-- Volunteering Preferences -->
+      <label for="availability">Availability:</label>
+      <textarea id="availability" name="availability" rows="2" placeholder="Days/times you are available"></textarea>
+
+      <label for="preferred-roles">Preferred Roles:</label>
+      <select id="preferred-roles" name="preferred-roles" multiple>
+        <option value="distribution">Distribution</option>
+        <option value="funding">Funding</option>
+        <option value="educating">Educating</option>
+        <option value="admin-support">Administrative Support</option>
+      </select>
+
+      <label for="skills">Skills or Expertise:</label>
+      <textarea id="skills" name="skills" rows="2" placeholder="Skills or experience relevant to volunteering"></textarea>
+
+      <!-- Commitment Level -->
+      <label for="commitment">Desired Commitment:</label>
+      <textarea id="commitment" name="commitment" rows="2" placeholder="How many hours per week or total duration"></textarea>
+
+      <!-- Additional Information -->
+      <label for="motivation">Motivation for Volunteering:</label>
+      <textarea id="motivation" name="motivation" rows="4" placeholder="Why you want to volunteer"></textarea>
+
+      <label for="accommodations">Special Accommodations or Needs:</label>
+      <textarea id="accommodations" name="accommodations" rows="2" placeholder="Any special needs or accommodations"></textarea>
+
+      <!-- Consent and Agreement -->
+      <label>
+        <input type="checkbox" id="consent" name="consent" required> I agree to the terms and conditions
+      </label>
+
+      <!-- Emergency Contact -->
+      <label for="emergency-contact">Emergency Contact:</label>
+      <input type="text" id="emergency-contact" name="emergency-contact" placeholder="Name and phone number of emergency contact">
+
+      <!-- Submit Button -->
+      <button type="submit" >Submit</button>
+    </form>
+    <div class="success-message" id="success-message" style="display: none;">
+        Thank you for your feedback!
+      </div>
+  </div>
+  
+  <script>
+    document.getElementById('volunteerForm').addEventListener('submit', async function(event) {
+      event.preventDefault();
+  
+      const formData = {
+        fullName: document.getElementById('full-name').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        address: document.getElementById('address').value,
+        availability: document.getElementById('availability').value,
+        preferredRoles: Array.from(document.getElementById('preferred-roles').selectedOptions).map(option => option.value),
+        skills: document.getElementById('skills').value,
+        commitment: document.getElementById('commitment').value,
+        motivation: document.getElementById('motivation').value,
+        accommodations: document.getElementById('accommodations').value,
+        emergencyContact: document.getElementById('emergency-contact').value,
+        consent: document.getElementById('consent').checked
+      };
+  
+      try {
+        const response = await fetch('/submit-feedback-2', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(formData)
+        });
+
+        if (response.ok) {
+            alert('Volunteer information submitted successfully!');
+        } else {
+          const errorData = await response.json();
+          console.error('Server responded with error:', errorData);
+          alert('Failed to submit feedback. Please try again.');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred while submitting feedback.');
+      }
+    });
+  </script>
+  
+  
+</body>
+</html>

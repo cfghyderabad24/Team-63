@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login and Sign-Up</title>
+    <link rel="stylesheet" href="global.css">
+</head>
+<body style="background:#89bd98;">
+    <h2 style="text-align: center;">Sign-Up</h2>
+    <form id="signup-form">
+        <div class="signupdiv">
+        <div class="mygroup">
+            <label for="signup-username">Username:</label>
+            <input type="text" id="signup-username" name="username" required><br><br>
+        </div>
+        <div class="mygroup">
+            <label for="signup-email">Email:</label>
+            <input type="email" id="signup-email" name="email" required><br><br>
+        </div>
+        <div class="mygroup">
+            <label for="signup-password">Password:</label>
+            <input type="password" id="signup-password" name="password" required><br><br>
+        </div>
+        <div class="mygroup">
+            
+            <button type="submit">Sign Up</button>
+        </div>
+        </div>
+    </form>
+    <div id="signup-message"></div>
+    <script>
+        
+            document.getElementById('signup-form').addEventListener('submit', async function(event) {
+                event.preventDefault();
+        
+                const username = document.getElementById('signup-username').value;
+                const email = document.getElementById('signup-email').value;
+                const password = document.getElementById('signup-password').value;
+        
+                try {
+                    const response = await fetch('http://localhost:3000/signupstudent', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ username, email, password })
+                    });
+        
+                    if (response.ok) {
+                        const message = await response.text();
+                        document.getElementById('signup-message').textContent = message;
+                        window.location.href = '/index.html';
+                    } else {
+                        const errorMessage = await response.text();
+                        document.getElementById('signup-message').textContent = errorMessage;
+                    }
+                } catch (error) {
+                    console.error('Error during sign-up:', error);
+                    document.getElementById('signup-message').textContent = 'An error occurred during sign-up';
+                }
+            });
+        
+    </script>
+</body>
+</html>
